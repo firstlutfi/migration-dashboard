@@ -974,7 +974,7 @@ var App = function() {
         },
 
         getGlobalImgPath: function() {
-            return assetsPath + globalImgPath;
+            return globalImgPath;
         },
 
         setGlobalPluginsPath: function(path) {

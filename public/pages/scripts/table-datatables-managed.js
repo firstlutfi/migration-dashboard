@@ -6,7 +6,9 @@ var TableDatatablesManaged = function () {
 
         // begin first table
         table.dataTable({
-
+            "ajax": {
+                "url": "http://localhost:8000/test?page=2", // ajax source
+            },
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
                 "aria": {
@@ -41,11 +43,11 @@ var TableDatatablesManaged = function () {
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
             "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [15, 20, -1],
+                [15, 20, "All"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 5,            
+            "pageLength": 15,            
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings
@@ -93,7 +95,7 @@ var TableDatatablesManaged = function () {
 
         // begin first table
         table.dataTable({
-
+            
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
                 "aria": {
@@ -133,7 +135,7 @@ var TableDatatablesManaged = function () {
             ],
 
             // set the initial value
-            "pageLength": 5,            
+            "pageLength": 15,            
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings

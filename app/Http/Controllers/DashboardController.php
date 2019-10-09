@@ -7,9 +7,14 @@ use App\Dashboard;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        $test = Dashboard::take(10)->get()->toArray();
+    public function index(Request $request){
+        $data = Dashboard::getAllDataForTable($request);
+        return view('dashboard', ['collection' => $data]);
+    }
 
-        dd($test);
+    public function getAllDataForTable(Request $request){
+        $data = Dashboard::getAllDataForTable($request);
+
+        return $data;
     }
 }

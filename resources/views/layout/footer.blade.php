@@ -5,14 +5,13 @@
     <script src={{ asset('global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }} type="text/javascript"></script>
     <script src={{ asset('global/plugins/jquery.blockui.min.js') }} type="text/javascript"></script>
     <script src={{ asset('global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }} type="text/javascript"></script>
-    <script src={{ asset('global/scripts/app.min.js') }} type="text/javascript"></script>
+    <script src={{ asset('global/scripts/app.js') }} type="text/javascript"></script>
     <script src={{ asset('layouts/layout3/scripts/layout.min.js') }} type="text/javascript"></script>
     <script src={{ asset('layouts/layout3/scripts/demo.min.js') }} type="text/javascript"></script>
     <script src={{ asset('layouts/global/scripts/quick-sidebar.min.js') }} type="text/javascript"></script>
     <script src={{ asset('layouts/global/scripts/quick-nav.min.js') }} type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
-@section("page-level-scripts")
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src={{ asset('global/plugins/moment.min.js') }} type="text/javascript"></script>
     <script src={{ asset('global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }} type="text/javascript"></script>
@@ -34,8 +33,8 @@
     <script src={{ asset('global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }} type="text/javascript"></script>
     <script src={{ asset('global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }} type="text/javascript"></script>
     <script src={{ asset('pages/scripts/dashboard.min.js') }} type="text/javascript"></script>
+    @yield("page-level-scripts")
 <!-- END PAGE LEVEL SCRIPTS -->
-@endsection
         <!-- END THEME LAYOUT SCRIPTS -->
         <script>
             $(document).ready(function()

@@ -30,7 +30,7 @@
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href={{ asset('layouts/layout3/css/layout.min.css') }} rel="stylesheet" type="text/css" />
         <link href={{ asset('layouts/layout3/css/themes/default.min.css') }} rel="stylesheet" type="text/css" id="style_color" />
-        <link href={{ asset('layouts/layout3/css/custom.min.css') }} rel="stylesheet" type="text/css" />
+        <link href={{ asset('layouts/layout3/css/custom.css') }} rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->

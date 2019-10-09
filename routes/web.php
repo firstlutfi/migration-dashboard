@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
 
-Route::get('/test', 'DashboardController@index');
+Route::get('/', 'DashboardController@index');
+Route::get('get-data-for-table', 'DashboardController@getAllDataForTable');
