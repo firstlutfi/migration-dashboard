@@ -17,4 +17,10 @@ class DashboardController extends Controller
 
         return $data;
     }
+
+    public function getDetail(Request $request){
+        $data = Dashboard::getDetail($request->company_id);
+
+        return json_encode($data[0]);
+    }
 }

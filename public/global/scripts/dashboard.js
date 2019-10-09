@@ -20,10 +20,12 @@ var DashboardScripts = function () {
             success: function (result) {
                 var append = "";
                 $.each( result.data, function( key, value ) {
-                    append += '<tr><td id="org_id" style="width:5%">' + value.org_id + '</td><td id="company-name">' + value.org_name + '</td><td id="company-email">' + value.org_bill_email + '</td><td id="migrate-date">' + value.date_execute + '</td><td id="migrate-last-state">' + value.orgmigrate_laststate + '</td><td id="migrate-message">' + value.orgmigrate_message + '</td><td id="migrate-action"><button type="button" id="button-detail" data-company-id="' + value.org_id + '" class="btn btn-circle btn-default"><i class="fa fa-eye"></i> Detail</button><button type="button" id="button-detail" data-company-id="' + value.org_id + '" class="btn btn-circle btn-default"><i class="fa fa-history"></i> History</button></td></tr>';
+                    append += '<tr><td id="org_id" style="width:5%">' + value.org_id + '</td><td id="company-name">' + value.org_name + '</td><td id="company-email">' + value.org_bill_email + '</td><td id="migrate-date">' + value.date_execute + '</td><td id="migrate-last-state">' + value.orgmigrate_laststate + '</td><td id="migrate-message">' + value.orgmigrate_message + '</td><td id="migrate-action"><button type="button" id="button-detail" data-company-id="' + value.org_id + '" class="btn btn-circle btn-default"><i class="fa fa-eye"></i> Detail</button><button type="button" id="button-history" data-company-id="' + value.org_id + '" class="btn btn-circle btn-default"><i class="fa fa-history"></i> History</button></td></tr>';
                     table.html(append);
                 });
 
+                var info = "<strong>Showing data " + result.from + " to " + result.to + " from total " + result.total + " data</strong> (Page " + result.current_page + " out of " + result.last_page + ")";
+                $("#data-info").html(info); 
                 initPaging(result);
             },
             error: function () {
@@ -40,22 +42,54 @@ var DashboardScripts = function () {
 
         if (params.current_page == 1){
             $("#button-prev").addClass("disabled");
-            
-        }else if (params.current_page == params.last_page){
+        }else{
+            $("#button-prev").removeClass("disabled");
+        }
+        
+        if (params.current_page == params.last_page){
             $("#button-next").addClass("disabled");
-            
+        }else{
+            $("#button-next").removeClass("disabled");
         }
 
         $('#pagination').show();
-    }
+    };
 
     var handlePaging = function(){
-        var default_url = "/get-data-for-table";
-        var page_number = $("#page-number").attr("value");
         $("#button-prev, #button-next").click(function() {
-            initTable($(this).data('url'));
+            initTable($(this).attr('data-url'));
         });
-    }
+    };
+
+    var handleActionButton = function(){
+        $(document).on('click', '#button-detail', function() {
+            $.ajax({
+                type: 'post', // define the type of HTTP verb we want to use (POST for our form)
+                url: '/get-detail', // the url where we want to POST
+                dataType: 'json', // what type of data do we expect back from the server
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    company_id: $(this).data('company-id')
+                },
+                encode: true,
+                beforeSend: function(){
+                    App.blockUI({boxed: true});
+                },
+                complete: function(){
+                    App.unblockUI();
+                },
+                success: function (result) {
+                    $("#detail-payload").html(result.message);
+                    $("#modal-detail").modal('show');
+                },
+                error: function () {
+                   
+                }
+            });
+        });
+    };
 
 
     return {
@@ -63,6 +97,7 @@ var DashboardScripts = function () {
         init: function () {
             initTable();
             handlePaging();
+            handleActionButton();
         }
 
     };

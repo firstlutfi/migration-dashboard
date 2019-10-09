@@ -246,11 +246,19 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="pagination" id="pagination" data-current-page="" style="display: none">
-                                                    <a href="javascript:void(0);" id="button-prev" data-url=""><i class="fa fa-angle-left"></i></a>
-                                                    <input type="text" name="page-number" id="page-number">
-                                                    <a href="javascript:void(0);" id="button-next" data-url=""><i class="fa fa-angle-right"></i></a>
+                                                <div class="row">
+                                                    <div class="col-md-6" id="data-info">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="pagination" id="pagination" data-current-page="" style="display: none">
+                                                            <a href="javascript:void(0);" id="button-prev" data-url=""><i class="fa fa-angle-left"></i></a>
+                                                            <input type="text" name="page-number" id="page-number" readonly>
+                                                            <a href="javascript:void(0);" id="button-next" data-url=""><i class="fa fa-angle-right"></i></a>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -267,6 +275,25 @@
         </div>
         <!-- END CONTAINER -->
     </div>
+    <div id="modal-detail" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" id="detail-title"></h4>
+                </div>
+                <div class="modal-body" id="detail-body">
+                  <h4 class="text-bold">JSON Payload</h4>
+                  <div id="detail-payload"></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          
+            </div>
+          </div>
 </div>
 @endsection
 

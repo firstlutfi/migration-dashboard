@@ -17,3 +17,4 @@
 
 Route::get('/', 'DashboardController@index');
 Route::get('get-data-for-table', 'DashboardController@getAllDataForTable');
+Route::post('get-detail', 'DashboardController@getDetail');

@@ -37,4 +37,17 @@ class Dashboard extends Model
         return $data;
     }
 
+    public static function getDetail($company_id){
+        $data = DB::table('portal_organization_migrate')
+        ->selectRaw("
+        case
+            when position('{' in portal_organization_migrate.orgmigrate_message) > 0 then substring(portal_organization_migrate.orgmigrate_message, position('{' in portal_organization_migrate.orgmigrate_message))
+            else portal_organization_migrate.orgmigrate_message
+        end message")
+        ->leftJoin('portal_organization', 'portal_organization.org_id', '=', 'portal_organization_migrate.org_id')
+        ->where('portal_organization_migrate.org_id', '=', $company_id)
+        ->get();
+        return $data;
+    }
+
 }
